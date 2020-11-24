@@ -1,0 +1,126 @@
+:: StoryTitle
+تناسخ
+
+:: UserScript[script]
+$(window).on('sm.passage.showing', function(event, passage) {
+
+  $("tw-passage").hide(0).fadeIn(1000);
+
+});
+
+:: UserStylesheet[stylesheet]
+@font-face {
+  font-family: Sans;
+  src: url(Iranian-Sans.ttf);
+}
+
+* {
+    font-family: Sans;
+    background-color: white;
+}
+
+body {
+    color: black;
+    text-align: center;
+  	direction: rtl;
+    font-size: large;
+    margin-top: 5%;
+}
+
+a:link {
+    color: LightSeaGreen;
+    text-decoration: none;
+}
+
+a:visited {
+    color: LightSeaGreen;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+:: Start
+
+مُردی
+
+تناسخ واقعیت داشته
+
+با این تفاوت که در بدو خلقت دوبارت
+
+داری حق انتخاب.
+
+دوس داری تو زندگی بعدیت باشی یه...
+
+[[آبزی->Maahi]] [[انسان->Man]] [[پرنده->Pigen]]
+
+
+
+::Maahi
+
+هستی یه ماهی قرمز توی سفره‌ای هفت سین
+
+پیش یه خونواده‌ی خیلی کمتر غمگین
+
+[[میمیری->Start]]
+
+
+
+::Pigen
+
+هستی پرنده‌ای نه چندان زیبا
+
+هستی کبوتری به رنگ خاکستری
+
+میتونی پرواز کنی خیلی آزاد
+
+میون ابرها تو موج بادها
+
+به سوی ناکجاآباد
+
+[[میمیری->Start]]
+
+
+
+::Man
+
+تو یک کودک شیر خواره توی آغوش یک مادر
+
+همون مادر قبلیت ولی خیلی جوون‌تر
+
+هستی همون انسان قبلی ولی میدونی قراره چطوری زندگی کنی و بمیری
+
+حداقل کاری که میتونی بکنی اینه که چشاتو ببندی
+
+
+[[چشات رو میبندی->Alernate Start]]
+
+[[چشات رو نمیبندی->Reward]]
+
+
+
+::Alernate Start
+
+این شوخی کائنات بود
+
+دوباره انتخاب کن
+
+[[آبزی->Maahi]] [[انسان->Man]] [[پرنده->Pigen]]
+
+
+
+::Reward
+
+به خاطر جسارت زیادت زندگیت  ادامه داره
+
+صفحه تاریک میشه
+
+۵ سال گذشته
+
+[[میمیری->Start]]
