@@ -46,81 +46,211 @@ a:active {
     text-decoration: none;
 }
 
+
+
 :: Start
 
-مُردی
+<%
 
-تناسخ واقعیت داشته
+s.tellWords = async (words) => {
+  for (const word of words) {
+    await new Promise(r => setTimeout(r, 500));
+    $(`#${word.id}`).fadeIn(1000);
+  }
+}
 
-با این تفاوت که در بدو خلقت دوبارت
+%>
 
-داری حق انتخاب.
+<p id="1" hidden>مُردی</p>
 
-دوس داری تو زندگی بعدیت باشی یه...
+<p id="2" hidden>تناسخ واقعیت داشته</p>
 
-[[آبزی->Maahi]] [[انسان->Man]] [[پرنده->Pigen]]
+<p id="3" hidden>با این تفاوت که در بدو خلقت دوبارت</p>
+
+<p id="4" hidden>داری حق انتخاب.</p>
+
+<p id="5" hidden>دوس داری تو زندگی بعدیت باشی یه...</p>
+
+<span>
+<a id= "6" href="javascript:void(0)" data-passage="Maahi" hidden>آبزی</a>
+</span>
+
+<span>
+<a id= "7" href="javascript:void(0)" data-passage="Man" hidden>انسان</a>
+</span>
+
+<span>
+<a id= "8" href="javascript:void(0)" data-passage="Pigen" hidden>پرنده</a>
+</span>
+
+<%
+
+const introWords = [
+    {id: 1, delay: 500},
+    {id: 2, delay: 1000},
+    {id: 3, delay: 2000},
+    {id: 4, delay: 3000},
+    {id: 5, delay: 3000},
+    {id: 6, delay: 2000},
+    {id: 7, delay: 2000},
+    {id: 8, delay: 2000},
+]
+
+
+s.tellWords(introWords);
+
+%>
 
 
 
 ::Maahi
 
-هستی یه ماهی قرمز توی سفره‌ای هفت سین
+<p id="1" hidden>هستی یه ماهی قرمز توی سفره‌ای هفت سین</p>
 
-پیش یه خونواده‌ی خیلی کمتر غمگین
+<p id="2" hidden>پیش یه خونواده‌ی خیلی کمتر غمگین</p>
 
-[[میمیری->Start]]
+<span>
+<a id= "3" href="javascript:void(0)" data-passage="Start" hidden>میمیری</a>
+</span>
+
+<%
+
+const maahiWords = [
+    {id: 1, delay: 500},
+    {id: 2, delay: 1000},
+    {id: 3, delay: 1000},
+]
+
+s.tellWords(maahiWords);
+
+%>
 
 
 
 ::Pigen
 
-هستی پرنده‌ای نه چندان زیبا
+<p id="1" hidden>هستی پرنده‌ای نه چندان زیبا</p>
 
-هستی کبوتری به رنگ خاکستری
+<p id="2" hidden>هستی کبوتری به رنگ خاکستری</p>
 
-میتونی پرواز کنی خیلی آزاد
+<p id="3" hidden>میتونی پرواز کنی خیلی آزاد</p>
 
-میون ابرها تو موج بادها
+<p id="4" hidden>میون ابرها تو موج بادها</p>
 
-به سوی ناکجاآباد
+<p id="5" hidden>به سوی ناکجاآباد</p>
 
-[[میمیری->Start]]
+<span>
+    <a id= "6" href="javascript:void(0)" data-passage="Start" hidden>میمیری</a>
+</span>
+
+<%
+
+const pigenWords = [
+    {id: 1, delay: 500},
+    {id: 2, delay: 1000},
+    {id: 3, delay: 1000},
+    {id: 4, delay: 1000},
+    {id: 5, delay: 1000},
+    {id: 6, delay: 1000},
+]
+
+s.tellWords(pigenWords);
+
+%>
 
 
 
 ::Man
 
-تو یک کودک شیر خواره توی آغوش یک مادر
+<p id="1" hidden>تو یک کودک شیر خواره توی آغوش یک مادر</p>
 
-همون مادر قبلیت ولی خیلی جوون‌تر
+<p id="2" hidden>همون مادر قبلیت ولی خیلی جوون‌تر</p>
 
-هستی همون انسان قبلی ولی میدونی قراره چطوری زندگی کنی و بمیری
+<p id="3" hidden>هستی همون انسان قبلی ولی میدونی قراره چطوری زندگی کنی و بمیری</p>
 
-حداقل کاری که میتونی بکنی اینه که چشاتو ببندی
+<p id="4" hidden>حداقل کاری که میتونی بکنی اینه که چشاتو ببندی</p>
 
+<span>
+    <a id= "5" href="javascript:void(0)" data-passage="Alernate Start" hidden>چشات رو میبندی</a>
+</span>
 
-[[چشات رو میبندی->Alernate Start]]
+<span>
+    <a id= "6" href="javascript:void(0)" data-passage="Reward" hidden>چشات رو نمیبندی</a>
+</span>
 
-[[چشات رو نمیبندی->Reward]]
+<%
+
+const manWords = [
+    {id: 1, delay: 500},
+    {id: 2, delay: 1000},
+    {id: 3, delay: 1000},
+    {id: 4, delay: 1000},
+    {id: 5, delay: 1000},
+    {id: 6, delay: 1000},
+]
+
+s.tellWords(manWords);
+
+%>
 
 
 
 ::Alernate Start
 
-این شوخی کائنات بود
+<p id="1" hidden>این شوخی کائنات بود</p>
 
-دوباره انتخاب کن
+<p id="2" hidden>دوباره انتخاب کن</p>
 
-[[آبزی->Maahi]] [[انسان->Man]] [[پرنده->Pigen]]
+<span>
+<a id= "3" href="javascript:void(0)" data-passage="Maahi" hidden>آبزی</a>
+</span>
+
+<span>
+<a id= "4" href="javascript:void(0)" data-passage="Man" hidden>انسان</a>
+</span>
+
+<span>
+<a id= "5" href="javascript:void(0)" data-passage="Pigen" hidden>پرنده</a>
+</span>
+
+<%
+
+const start2Words = [
+    {id: 1, delay: 500},
+    {id: 2, delay: 1000},
+    {id: 3, delay: 1000},
+    {id: 4, delay: 1000},
+    {id: 5, delay: 1000},
+]
+
+s.tellWords(start2Words);
+
+%>
 
 
 
 ::Reward
 
-به خاطر جسارت زیادت زندگیت  ادامه داره
+<p id="1" hidden>به خاطر جسارت زیادت زندگیت  ادامه داره</p>
 
-صفحه تاریک میشه
+<p id="2" hidden>صفحه تاریک میشه</p>
 
-۵ سال گذشته
+<p id="3" hidden>۵ سال گذشته</p>
 
-[[میمیری->Start]]
+<span>
+    <a id= "4" href="javascript:void(0)" data-passage="Start" hidden>میمیری</a>
+</span>
+
+<%
+
+const rewardWords = [
+    {id: 1, delay: 500},
+    {id: 2, delay: 1000},
+    {id: 3, delay: 1000},
+    {id: 4, delay: 1000},
+]
+
+s.tellWords(rewardWords);
+
+%>
+
