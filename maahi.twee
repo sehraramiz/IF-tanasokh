@@ -1,12 +1,22 @@
 :: StoryTitle
 تناسخ
 
+:: StoryData
+{
+    "ifid": "707232EF-BC11-4C5B-BEED-09A8E687BF7E"
+}
+
 :: UserScript[script]
-$(window).on('sm.passage.showing', function(event, passage) {
+$(window).on('show.sm.passage', function(event, passage) {
 
   $("tw-passage").hide(0).fadeIn(1000);
 
 });
+
+$(window).ready(function() {
+    $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+});
+
 
 :: UserStylesheet[stylesheet]
 @font-face {
@@ -17,14 +27,16 @@ $(window).on('sm.passage.showing', function(event, passage) {
 * {
     font-family: Sans;
     background-color: white;
+    scroll-behavior: smooth;
 }
 
 body {
     color: black;
     text-align: center;
   	direction: rtl;
-    font-size: large;
-    margin-top: 5%;
+    font-size: small;
+    margin-top: 10%;
+    margin-bottom: 20%;
 }
 
 a:link {
@@ -52,48 +64,59 @@ a:active {
 
 <%
 
-s.tellWords = async (words) => {
-  for (const word of words) {
-    await new Promise(r => setTimeout(r, 500));
-    $(`#${word.id}`).fadeIn(1000);
+function callback(word)
+{
+    var target = $('#' + word.id);
+    var footer = $('#footer');
+    target.hide(0).fadeIn(3000);
+    if (footer.offset()){
+        var percent = (70 / 100) * footer.offset().top;
+        console.log(percent)
+        $(window).scrollTop(footer.offset().top - 200)
+    }
+}
+
+s.tellWords =function(words) {
+  var allDelay = 0;
+  for (var i = 0; i < words.length; i++) {
+
+    var doCall = function (j) {
+        setTimeout(function() { callback(j); }, allDelay);
+      }
+    doCall(words[i]);
+    allDelay += words[i].delay;
+
   }
 }
 
 %>
 
 <p id="1" hidden>مُردی</p>
-
 <p id="2" hidden>تناسخ واقعیت داشته</p>
-
 <p id="3" hidden>با این تفاوت که در بدو خلقت دوبارت</p>
-
 <p id="4" hidden>داری حق انتخاب.</p>
-
 <p id="5" hidden>دوس داری تو زندگی بعدیت باشی یه...</p>
 
-<span>
-<a id= "6" href="javascript:void(0)" data-passage="Maahi" hidden>آبزی</a>
-</span>
+<div id="options" hidden>
+    <span>
+        <a id= "6" href="javascript:void(0)" data-passage="Maahi" >&nbsp;&nbsp;آبزی&nbsp;&nbsp;</a>
+        <a id= "7" href="javascript:void(0)" data-passage="Man" >&nbsp;انسان&nbsp;</a>
+        <a id= "8" href="javascript:void(0)" data-passage="Pigeon" >&nbsp;&nbsp;پرنده&nbsp;&nbsp;</a>
+    </span>
+</div>
 
-<span>
-<a id= "7" href="javascript:void(0)" data-passage="Man" hidden>انسان</a>
-</span>
 
-<span>
-<a id= "8" href="javascript:void(0)" data-passage="Pigen" hidden>پرنده</a>
-</span>
+<p id="footer" style="opacity:0">-----</p>
 
 <%
 
 const introWords = [
-    {id: 1, delay: 500},
-    {id: 2, delay: 1000},
+    {id: 1, delay: 1500},
+    {id: 2, delay: 2000},
     {id: 3, delay: 2000},
-    {id: 4, delay: 3000},
-    {id: 5, delay: 3000},
-    {id: 6, delay: 2000},
-    {id: 7, delay: 2000},
-    {id: 8, delay: 2000},
+    {id: 4, delay: 2000},
+    {id: 5, delay: 2000},
+    {id: "options", delay: 2000},
 ]
 
 
@@ -105,20 +128,54 @@ s.tellWords(introWords);
 
 ::Maahi
 
+<img id="0" src="/mahi.gif" hidden></img>
 <p id="1" hidden>هستی یه ماهی قرمز توی سفره‌ای هفت سین</p>
-
 <p id="2" hidden>پیش یه خونواده‌ی خیلی کمتر غمگین</p>
+<p id="3" hidden>لبخند میزنی، خوشحال میشی</p>
+<p id="4" hidden>میشناسی چهره‌های دور سفره رو</p>
+<p id="5" hidden>سال، سالِ شصتِ</p>
+<p id="6" hidden>هستن همه</p>
+<p id="7" hidden>دایی، خاله، عمه</p>
+<p id="8" hidden>نیست بابابزرگت با یه ربان مشکی تو قاب عکسش</p>
+<p id="9" hidden>عضو همون خونواده‌ای، ولی این بار از پشت تُنگت</p>
+<p id="10" hidden>میتونی گریه کنی، بخندی، کسی نمیشنوه صداتو</p>
+<p id="11" hidden>حافظت کمه</p>
+<p id="12" hidden>همین لحظه‌ی زیبا برات بارها تکرار میشه</p>
+<p id="13" hidden>چه انتخاب خوبی</p>
+<p id="14" hidden>چه زندگی خوبی</p>
+<p id="15" hidden>به عنوان یه ماهی قرمز</p>
+<span id="16" hidden>تا اینکه به پایانت میرسی و </span>
 
-<span>
-<a id= "3" href="javascript:void(0)" data-passage="Start" hidden>میمیری</a>
-</span>
+<div id="options" hidden>
+    <span>
+        <a id= "17" href="javascript:void(0)" data-passage="Start">میمیری</a>
+    </span>
+</div>
+
+<p id="footer" style="opacity:0">-----</p>
+
 
 <%
 
 const maahiWords = [
-    {id: 1, delay: 500},
-    {id: 2, delay: 1000},
-    {id: 3, delay: 1000},
+    {id: 0, delay: 1000},
+    {id: 1, delay: 3000},
+    {id: 2, delay: 3000},
+    {id: 3, delay: 3000},
+    {id: 4, delay: 3000},
+    {id: 5, delay: 2000},
+    {id: 6, delay: 2000},
+    {id: 7, delay: 2000},
+    {id: 8, delay: 2000},
+    {id: 9, delay: 3500},
+    {id: 10, delay: 3500},
+    {id: 11, delay: 3000},
+    {id: 12, delay: 2500},
+    {id: 13, delay: 2000},
+    {id: 14, delay: 2000},
+    {id: 15, delay: 2000},
+    {id: 16, delay: 2000},
+    {id: "options", delay: 2000},
 ]
 
 s.tellWords(maahiWords);
@@ -127,34 +184,112 @@ s.tellWords(maahiWords);
 
 
 
-::Pigen
+::Pigeon
 
+<img id="0" src="/pigeon-eyes.gif" hidden></img>
 <p id="1" hidden>هستی پرنده‌ای نه چندان زیبا</p>
-
 <p id="2" hidden>هستی کبوتری به رنگ خاکستری</p>
-
 <p id="3" hidden>میتونی پرواز کنی خیلی آزاد</p>
-
 <p id="4" hidden>میون ابرها تو موج بادها</p>
-
 <p id="5" hidden>به سوی ناکجاآباد</p>
+<p id="6" hidden>اما قبل رفتنت کار ناتمومی داری</p>
+<p id="7" hidden>پرواز میکنی</p>
+<p id="8" hidden>میرسی به دیواری</p>
+<p id="9" hidden>که توی کوچه‌ای</p>
+<p id="10" hidden>روش می‌نشست کبوتری خاکستری</p>
+<p id="11" hidden>به تماشای پنجره‌های خونه‌ای</p>
+<p id="12" hidden>بغبغو کنان</p>
+<p id="13" hidden>به تماشای خونواده‌ای</p>
+<p id="14" hidden>میشینی روی همون دیوار</p>
+<img id="14-1" src="/house.png" hidden></img>
+<p id="15" hidden>و فقط نگاه میکنی</p>
+<p id="16" hidden>اون حیاط و حوض و باغچه رو</p>
+<p id="17" hidden>مامان و مامان‌بزرگ</p>
+<p id="18" hidden>گلدونای روی طاقچه رو</p>
+<p id="19" hidden>میخوای بگی بهشون</p>
+<p id="20" hidden>آی منم بچتون</p>
+<p id="21" hidden>مُرده‌ام</p>
+<p id="22" hidden>اومدم توی کالبُدی جدید پیشتون</p>
+<p id="23" hidden>اما تنها چیزی که ازت شنیده میشه</p>
+<p id="24" hidden>همون بغبغوئه</p>
+<p id="25" hidden>میگی بغبغو (منم فلانی)</p>
+<p id="26" hidden>بغبغو (بچتون)</p>
+<p id="27" hidden>بغبغو (دوستون دارم)</p>
+<p id="28" hidden>بغبغو (فراموشتون نمیکنم)</p>
+<p id="29" hidden>میاد لنگه کفشی</p>
+<img id="29-1" src="/shoe.gif" hidden></img>
+<p id="30" hidden>محکم میخوره تو سرت</p>
+<p id="31" hidden>که بشه درس عبرتت</p>
+<p id="32" hidden>نشی درگیر نستالژی و احساسات</p>
+<p id="33" hidden>یادت میاد بابات اعصاب نداره</p>
+<p id="34" hidden>در حال سقوط یادت میاد</p>
+<p id="35" hidden>کفشای بابات بودن خیلی سنگین</p>
+<img id="35-1" src="/fall.gif" hidden></img>
+<p id="36" hidden>میخوری زمین</p>
+<p id="37" hidden>خیلی شدید، خیلی سهمگین</p>
+<p id="38" hidden>حالا همه بال و پرت آش و لاش</p>
+<p id="39" hidden>باید همون اول پرواز میکردی</p>
+<p id="40" hidden>میون ابرها تو موج بادها</p>
 
-<span>
-    <a id= "6" href="javascript:void(0)" data-passage="Start" hidden>میمیری</a>
-</span>
+<div id="options" hidden>
+    <span>
+        <a id= "41" href="javascript:void(0)" data-passage="Start">میمیری</a>
+    </span>
+</div>
+
+<p id="footer" style="opacity:0">-----</p>
 
 <%
 
-const pigenWords = [
-    {id: 1, delay: 500},
-    {id: 2, delay: 1000},
-    {id: 3, delay: 1000},
-    {id: 4, delay: 1000},
-    {id: 5, delay: 1000},
-    {id: 6, delay: 1000},
+const pigeonWords = [
+    {id: 0, delay: 1500},
+    {id: 1, delay: 2500},
+    {id: 2, delay: 2500},
+    {id: 3, delay: 2500},
+    {id: 4, delay: 2500},
+    {id: 5, delay: 2500},
+    {id: 6, delay: 2500},
+    {id: 7, delay: 2500},
+    {id: 8, delay: 2500},
+    {id: 9, delay: 2500},
+    {id: 10, delay: 2500},
+    {id: 11, delay: 2500},
+    {id: 12, delay: 2500},
+    {id: 13, delay: 2500},
+    {id: 14, delay: 2500},
+    {id: "14-1", delay: 2500},
+    {id: 15, delay: 2500},
+    {id: 16, delay: 2500},
+    {id: 17, delay: 2500},
+    {id: 18, delay: 2500},
+    {id: 19, delay: 2500},
+    {id: 20, delay: 2500},
+    {id: 21, delay: 2500},
+    {id: 22, delay: 2500},
+    {id: 23, delay: 2500},
+    {id: 24, delay: 2500},
+    {id: 25, delay: 2500},
+    {id: 26, delay: 2500},
+    {id: 27, delay: 2500},
+    {id: 28, delay: 2500},
+    {id: 29, delay: 2500},
+    {id: "29-1", delay: 2500},
+    {id: 30, delay: 2500},
+    {id: 31, delay: 2500},
+    {id: 32, delay: 2500},
+    {id: 33, delay: 2500},
+    {id: 34, delay: 2500},
+    {id: 35, delay: 2500},
+    {id: "35-1", delay: 2500},
+    {id: 36, delay: 2500},
+    {id: 37, delay: 2500},
+    {id: 38, delay: 2500},
+    {id: 39, delay: 2500},
+    {id: 40, delay: 2500},
+    {id: "options", delay: 2500},
 ]
 
-s.tellWords(pigenWords);
+s.tellWords(pigeonWords);
 
 %>
 
@@ -163,30 +298,86 @@ s.tellWords(pigenWords);
 ::Man
 
 <p id="1" hidden>تو یک کودک شیر خواره توی آغوش یک مادر</p>
-
 <p id="2" hidden>همون مادر قبلیت ولی خیلی جوون‌تر</p>
-
 <p id="3" hidden>هستی همون انسان قبلی ولی میدونی قراره چطوری زندگی کنی و بمیری</p>
+<p id="4" hidden>اولش شاید خیلی خوشحالی</p>
+<p id="5" hidden>یا خیلی هیجان زده</p>
+<p id="6" hidden>آماده برای ساختن آینده‌ای بهتر از قبل</p>
+<p id="7" hidden>اما حواست نیست</p>
+<p id="8" hidden>تو یک کودک شیر خواره‌ای</p>
+<p id="9" hidden>یک کودک شیرخواره</p>
+<p id="10" hidden>بالاخره باید غذا بخوری</p>
+<p id="11" hidden>فک میکنی چی میذارن جلوت؟</p>
+<p id="12" hidden>تو یک کودک شیرخواره‌ای</p>
+<p id="13" hidden>یک کودک شیر خواره</p>
+<p id="14" hidden>بالاخره باید بخوری شامت رو</p>
+<p id="15" hidden>تا پایان زندگی جدیدت به کسی نمیگی که هستی زاده‌ی تناسخ</p>
+<p id="16" hidden>چون بالاخره یه احمق پیدا میشه که بپرسه:</p>
+<p id="17" hidden>غذاتو چطوری میخوردی</p>
+<p id="18" hidden>وقتی بودی نوزادی شیر‌خواره</p>
+<p id="19" hidden>شده وقتِ شامت</p>
+<p id="20" hidden>نداری راهی برای بیان اعتراضت</p>
+<p id="21" hidden>جز گریه کردن</p>
+<p id="22" hidden>زار میزنی</p>
+<p id="23" hidden>هستی کودکی شیرخواره</p>
+<p id="24" hidden>همه فامیل بالا سرت، میپرسن:</p>
+<p id="25" hidden>چرا نمیگیرتش؟</p>
+<p id="26" hidden>چرا نمیخوره شیرش رو؟</p>
+<p id="27" hidden>یکی خاله</p>
+<p id="28" hidden>یکی عمه</p>
+<p id="29" hidden>میاد میگه</p>
+<p id="30" hidden>طبیعیه نگیره سینه رو اول</p>
+<p id="31" hidden>ولی از گشنگی تسلیم میشه آخر</p>
+<p id="32" hidden>هستی کودکی شیرخواره</p>
+<p id="33" hidden>حداقل کاری که میتونی بکنی اینه که چشات و ببندی</p>
 
-<p id="4" hidden>حداقل کاری که میتونی بکنی اینه که چشاتو ببندی</p>
+<div id="options" hidden>
+    <span>
+        <a id= "34" href="javascript:void(0)" data-passage="Alernate Start">&nbsp;&nbsp;چشات رو میبندی&nbsp;&nbsp;</a>
+        <a id= "35" href="javascript:void(0)" data-passage="Reward">&nbsp;&nbsp;چشات رو نمیبندی&nbsp;&nbsp;</a>
+    </span>
+</div>
 
-<span>
-    <a id= "5" href="javascript:void(0)" data-passage="Alernate Start" hidden>چشات رو میبندی</a>
-</span>
+<p id="footer" style="opacity:0">-----</p>
 
-<span>
-    <a id= "6" href="javascript:void(0)" data-passage="Reward" hidden>چشات رو نمیبندی</a>
-</span>
 
 <%
 
 const manWords = [
-    {id: 1, delay: 500},
-    {id: 2, delay: 1000},
-    {id: 3, delay: 1000},
-    {id: 4, delay: 1000},
-    {id: 5, delay: 1000},
-    {id: 6, delay: 1000},
+    {id: 1, delay: 3000},
+    {id: 2, delay: 3000},
+    {id: 3, delay: 3000},
+    {id: 4, delay: 4000},
+    {id: 5, delay: 3000},
+    {id: 6, delay: 3000},
+    {id: 7, delay: 3000},
+    {id: 8, delay: 3000},
+    {id: 9, delay: 3000},
+    {id: 10, delay: 3000},
+    {id: 11, delay: 2000},
+    {id: 12, delay: 2000},
+    {id: 13, delay: 2000},
+    {id: 14, delay: 2000},
+    {id: 15, delay: 3000},
+    {id: 16, delay: 3500},
+    {id: 17, delay: 3500},
+    {id: 18, delay: 3000},
+    {id: 19, delay: 3000},
+    {id: 20, delay: 3000},
+    {id: 21, delay: 3000},
+    {id: 22, delay: 2000},
+    {id: 23, delay: 2000},
+    {id: 24, delay: 3000},
+    {id: 25, delay: 3000},
+    {id: 26, delay: 3000},
+    {id: 27, delay: 3000},
+    {id: 28, delay: 2000},
+    {id: 29, delay: 2000},
+    {id: 30, delay: 2000},
+    {id: 31, delay: 2000},
+    {id: 32, delay: 3000},
+    {id: 33, delay: 3000},
+    {id: "options", delay: 2000},
 ]
 
 s.tellWords(manWords);
@@ -198,29 +389,28 @@ s.tellWords(manWords);
 ::Alernate Start
 
 <p id="1" hidden>این شوخی کائنات بود</p>
+<p id="2" hidden>آخه چرا باید دوباره بخوای باشی انسان</p>
+<p id="3" hidden>این بهترین حالتی بود که ممکنه پیش بیاد</p>
+<p id="4" hidden>لطفا چیز دیگه‌ای انتخاب کن</p>
 
-<p id="2" hidden>دوباره انتخاب کن</p>
+<div id="options" hidden>
+    <span>
+        <a id= "5" href="javascript:void(0)" data-passage="Maahi">&nbsp;&nbsp;آبزی&nbsp;&nbsp;</a>
+        <a id= "6" href="javascript:void(0)" data-passage="Man">&nbsp;انسان&nbsp;</a>
+        <a id= "7" href="javascript:void(0)" data-passage="Pigeon">&nbsp;&nbsp;پرنده&nbsp;&nbsp;</a>
+    </span>
+</div>
 
-<span>
-<a id= "3" href="javascript:void(0)" data-passage="Maahi" hidden>آبزی</a>
-</span>
-
-<span>
-<a id= "4" href="javascript:void(0)" data-passage="Man" hidden>انسان</a>
-</span>
-
-<span>
-<a id= "5" href="javascript:void(0)" data-passage="Pigen" hidden>پرنده</a>
-</span>
+<p id="footer" style="opacity:0">-----</p>
 
 <%
 
 const start2Words = [
-    {id: 1, delay: 500},
-    {id: 2, delay: 1000},
-    {id: 3, delay: 1000},
-    {id: 4, delay: 1000},
-    {id: 5, delay: 1000},
+    {id: 1, delay: 1000},
+    {id: 2, delay: 2000},
+    {id: 3, delay: 2000},
+    {id: 4, delay: 2000},
+    {id: "options", delay: 2000},
 ]
 
 s.tellWords(start2Words);
@@ -232,22 +422,28 @@ s.tellWords(start2Words);
 ::Reward
 
 <p id="1" hidden>به خاطر جسارت زیادت زندگیت  ادامه داره</p>
-
 <p id="2" hidden>صفحه تاریک میشه</p>
+<p id="3" hidden>۱۰ سال گذشته</p>
+<p id="4" hidden>خاطره‌ای از کودکیت نداری</p>
+<span id="5" hidden>به زندگیت ادامه میدی ، پیر میشی و </span>
 
-<p id="3" hidden>۵ سال گذشته</p>
+<div id="options" hidden>
+    <span>
+        <a id= "6" href="javascript:void(0)" data-passage="Start">میمیری</a>
+    </span>
+</div>
 
-<span>
-    <a id= "4" href="javascript:void(0)" data-passage="Start" hidden>میمیری</a>
-</span>
+<p id="footer" style="opacity:0">-----</p>
 
 <%
 
 const rewardWords = [
-    {id: 1, delay: 500},
-    {id: 2, delay: 1000},
-    {id: 3, delay: 1000},
-    {id: 4, delay: 1000},
+    {id: 1, delay: 1000},
+    {id: 2, delay: 2000},
+    {id: 3, delay: 2000},
+    {id: 4, delay: 2000},
+    {id: 5, delay: 2000},
+    {id: "options", delay: 2000},
 ]
 
 s.tellWords(rewardWords);
